@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateQuestionTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('question_tags', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('tag_id');
+            $table->unsignedBigInteger('question_id');
+            $table->foreign('tag_id')->references('id')->on('tags');
+            $table->foreign('question_id')->references('id')->on('questions');
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('question_tags');
     }
 }
