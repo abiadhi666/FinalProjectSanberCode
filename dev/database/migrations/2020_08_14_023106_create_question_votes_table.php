@@ -16,11 +16,12 @@ class CreateQuestionVotesTable extends Migration
         Schema::create('question_votes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->enum('vote', ['upvote', 'downvote']);
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('question_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('question_id')->references('id')->on('questions');
-            $table->timestamps();
         });
     }
 

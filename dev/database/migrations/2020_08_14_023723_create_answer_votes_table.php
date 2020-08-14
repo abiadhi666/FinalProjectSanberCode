@@ -15,11 +15,12 @@ class CreateAnswerVotesTable extends Migration
     {
         Schema::create('answer_votes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('answer_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('answer_id')->references('id')->on('answers');
-            $table->timestamps();
         });
     }
 
