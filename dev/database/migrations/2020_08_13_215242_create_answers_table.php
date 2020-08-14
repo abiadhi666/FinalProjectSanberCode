@@ -17,8 +17,6 @@ class CreateAnswersTable extends Migration
             $table->bigIncrements('id');
             $table->text('content');
             $table->boolean('is_correct');
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('question_id');
             $table->foreign('user_id')->references('id')->on('users');

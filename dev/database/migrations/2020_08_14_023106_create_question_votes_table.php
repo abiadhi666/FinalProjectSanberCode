@@ -16,8 +16,6 @@ class CreateQuestionVotesTable extends Migration
         Schema::create('question_votes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->enum('vote', ['upvote', 'downvote']);
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('question_id');
             $table->foreign('user_id')->references('id')->on('users');
